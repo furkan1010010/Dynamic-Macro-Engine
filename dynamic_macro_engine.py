@@ -1719,7 +1719,6 @@ class AutoClickerApp:
         except:
             pass
 
-
 if __name__ == "__main__":
     try:
         ctypes.windll.winmm.timeBeginPeriod(1)
@@ -1727,12 +1726,13 @@ if __name__ == "__main__":
         pass
 
     root = tk.Tk()
-    app = AutoClickerApp(root)
-    root.mainloop()
 
+    # Load icon from the same folder as the script
+    icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "app_icon.ico")
     try:
-        ctypes.windll.winmm.timeEndPeriod(1)
-    except:
+        root.iconbitmap(default=icon_path)   # default= also applies to the Help popup
+    except Exception:
         pass
 
-    os._exit(0)
+    app = AutoClickerApp(root)
+    root.mainloop()
